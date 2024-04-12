@@ -12,6 +12,7 @@ class Users(models.Model):
 class Products(models.Model):
     product_name=models.CharField(max_length=100)
     description=models.TextField()
+    product_url=models.URLField(max_length=200, blank=True)
     price=models.DecimalField(max_digits=10, decimal_places=2)
     discount_price=models.DecimalField(max_digits=10, decimal_places=2)
     stock=models.PositiveIntegerField()
