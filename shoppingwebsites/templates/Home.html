@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Shopping
+{% endblock %}
+
+{% block content %}
+<div class='row'>
+    {% for Product in Products%}
+    <div class='col-md-3 mb-3 row row-equal-height'>
+        <div class='card'>
+            <img src='{{Product.product_url}}',class ='card -img-top'>
+            <div class='card-body'>
+            <h5 class="card-title">{{ product_name }}</h5>
+                <p class="card-text">price: {{ Product.price }}</p>
+                  <p class="card-text">price: {{ Product.product_url }}</p>
+    {% endfor %}
+</div>
+{% endblock %}

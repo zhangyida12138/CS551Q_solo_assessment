@@ -17,6 +17,8 @@ class Products(models.Model):
     discount_price=models.DecimalField(max_digits=10, decimal_places=2)
     stock=models.PositiveIntegerField()
     category=models.CharField(max_length=50)
+    rating=models.DecimalField(max_digits=5, decimal_places=1, default=5.0)
+    no_of_ratings=models.PositiveIntegerField()
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
     class Meta:
