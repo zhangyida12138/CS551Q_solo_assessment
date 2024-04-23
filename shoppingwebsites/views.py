@@ -10,7 +10,7 @@ import random
 # Create your views here.
 def Home(request):
     product_count=Products.objects.count()
-    random_indexes=random.sample(range(product_count),30)#generate 30 random indexes
+    random_indexes=random.sample(range(product_count),32)#generate 32 random indexes
     products = [Products.objects.all()[index]for index in random_indexes]#get 30 randoms products
     return render(request,'Home.html',{'Products':products})
 

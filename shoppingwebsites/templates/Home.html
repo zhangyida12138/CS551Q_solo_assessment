@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     Shopping
@@ -6,14 +7,17 @@
 
 {% block content %}
 <div class='row'>
-    {% for Product in Products%}
-    <div class='col-md-3 mb-3 row row-equal-height'>
-        <div class='card'>
-            <img src='{{Product.product_url}}',class ='card -img-top'>
+    {% for Product in Products %}
+    <div class='col-md-3 mb-3'>
+        <div class='card h-100'>
+            <img src='{{ Product.product_url }}' onerror="this.onerror=null; this.src='{% static 'resource/no_image.png' %}';" class='card-img-top'>
             <div class='card-body'>
-            <h5 class="card-title">{{ product_name }}</h5>
-                <p class="card-text">price: {{ Product.price }}</p>
-                  <p class="card-text">price: {{ Product.product_url }}</p>
+                <h5 class='card-title'>{{ Product.product_name }}</h5>
+                <p class='card-text'>Price: {{ Product.price }}</p>
+                <a href='{{ Product.product_url }}' class='btn btn-primary'>View Product</a>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 </div>
 {% endblock %}

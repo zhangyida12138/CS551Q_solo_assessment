@@ -20,6 +20,12 @@ class Command(BaseCommand):
         self.import_Sports()
         self.import_Makeup()
 
+    def filter_non_ascii(self, text):
+        """Filters out non-ASCII characters from text."""
+        if isinstance(text, str):
+            return ''.join([char for char in text if ord(char) < 128])
+        return text
+
     def import_Applicances(self):
         file_path = os.path.join(os.path.dirname(__file__), '..', '..', 'data', 'All Appliances.csv')
         absolute_file_path = os.path.abspath(file_path)  # Getting absolute path
@@ -58,6 +64,9 @@ class Command(BaseCommand):
         # 3. Delete any other data with empty items
         data_df = data_df.dropna()
 
+        # 4. filter the non-ascii
+        data_df['name'] = data_df['name'].apply(self.filter_non_ascii)
+        
         for index,row in data_df.iterrows():
             object_to_create.append(Products(
                 product_name=row['name'],
@@ -114,6 +123,9 @@ class Command(BaseCommand):
         # 3. Delete any other data with empty items
         data_df = data_df.dropna()
 
+        # 4. filter the non-ascii
+        data_df['name'] = data_df['name'].apply(self.filter_non_ascii)
+        
         for index,row in data_df.iterrows():
             object_to_create.append(Products(
                 product_name=row['name'],
@@ -171,6 +183,9 @@ class Command(BaseCommand):
         # 3. Delete any other data with empty items
         data_df = data_df.dropna()
 
+        # 4. filter the non-ascii
+        data_df['name'] = data_df['name'].apply(self.filter_non_ascii)
+        
         for index,row in data_df.iterrows():
             object_to_create.append(Products(
                 product_name=row['name'],
@@ -227,7 +242,10 @@ class Command(BaseCommand):
 
         # 3. Delete any other data with empty items
         data_df = data_df.dropna()
-
+        
+        # 4. filter the non-ascii
+        data_df['name'] = data_df['name'].apply(self.filter_non_ascii)
+        
         for index,row in data_df.iterrows():
             object_to_create.append(Products(
                 product_name=row['name'],
@@ -285,6 +303,9 @@ class Command(BaseCommand):
         # 3. Delete any other data with empty items
         data_df = data_df.dropna()
 
+        # 4. filter the non-ascii
+        data_df['name'] = data_df['name'].apply(self.filter_non_ascii)
+        
         for index,row in data_df.iterrows():
             object_to_create.append(Products(
                 product_name=row['name'],
@@ -365,6 +386,9 @@ class Command(BaseCommand):
         # 3. Delete any other data with empty items
         data_df = data_df.dropna()
 
+        # 4. filter the non-ascii
+        data_df['name'] = data_df['name'].apply(self.filter_non_ascii)
+        
         for index,row in data_df.iterrows():
             object_to_create.append(Products(
                 product_name=row['name'],
