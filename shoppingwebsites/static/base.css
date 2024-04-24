@@ -80,6 +80,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* This will push the footer to the bottom */
+  
 }
 
 .card-title {

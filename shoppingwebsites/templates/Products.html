@@ -1,9 +1,25 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-    
+    Shopping 
 {% endblock %}
 
 {% block content %}
-
+<div class='row'>
+    {% for Product in Products %}
+    <div class='col-md-3 mb-3'>
+        <div class='card h-100'>
+            <img src='{{ Product.product_url }}' onerror="this.onerror=null; this.src='{% static 'resource/no_image.png' %}';" class='card-img-top'>
+            <div class='card-body'>
+                <h5 class='card-title'>{{ Product.product_name }}</h5>
+                <p class='card-text'>Price: ￡{{ Product.price }}</p>
+                <a href='{{ Product.product_url }}' class='btn btn-primary'>View Product</a>
+                <p class='card_text'>⭐:{{Product.rating}}  <font size=1 color=#536878>{{Product.no_of_ratings}} have rated.</font></p>
+                <p class='card-text' position=center>{{ Product.stock }} in stock.</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
