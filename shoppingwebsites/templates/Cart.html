@@ -2,9 +2,34 @@
 {% load static %}
 
 {% block title %}
-    
+ Shopping Cart   
 {% endblock %}
 
 {% block content %}
+<h2>Your Shopping Cart</h2>
+{% for item in cart_items %}
+<form method="post" action="{% url 'update_cart' item.product.id %}">
+    {% csrf_token %}
+    <div class="cart-item">
+        <img src="{{ item.product.product_url }}" onerror="this.onerror=null; this.src='{% static 'resource/no_image.png' %}';"alt="{{ item.product.product_name }}" class="cart-item-image"/>
+        <div class="cart-item-details">
+            <h4>{{ item.product.product_name }}</h4>
+            <p>Quantity: 
+                <button type="submit" name="action" value="decrease">-</button>
+                <input type="text" name="quantity" value="{{ item.quantity }}" class="quantity-input" readonly/>
+                <button type="submit" name="action" value="increase">+</button>
+            </p>
+            <p>Price(for one):￡{{ item.product.price }}</p>
+            <button type="submit" formaction="{% url 'remove_from_cart' item.product.id %}" formmethod="post">Remove</button>
+        </div>
+    </div>
+</form>
+{% empty %}
+    <p>Your shopping cart is empty.</p>
+{% endfor %}
 
+<div class="checkout">
+    <p>￡{{ total_price }} in total.</p>
+    <a href="{% url 'Purchase' %}" class="btn btn-primary">Proceed to Checkout</a>
+</div>
 {% endblock %}

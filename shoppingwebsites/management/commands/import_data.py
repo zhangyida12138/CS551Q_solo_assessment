@@ -75,6 +75,7 @@ class Command(BaseCommand):
                 price=row['actual_price'],
                 discount_price=row['discount_price'],
                 stock=999,
+                rating=row['ratings'],
                 category=row['main_category'],
                 no_of_ratings=row['no_of_ratings'],
             ))
@@ -134,6 +135,7 @@ class Command(BaseCommand):
                 price=row['actual_price'],
                 discount_price=row['discount_price'],
                 stock=999,
+                rating=row['ratings'],
                 category=row['main_category'],
                 no_of_ratings=row['no_of_ratings'],
             ))
@@ -194,6 +196,7 @@ class Command(BaseCommand):
                 price=row['actual_price'],
                 discount_price=row['discount_price'],
                 stock=999,
+                rating=row['ratings'],
                 category=row['main_category'],
                 no_of_ratings=row['no_of_ratings'],
             ))
@@ -254,6 +257,7 @@ class Command(BaseCommand):
                 price=row['actual_price'],
                 discount_price=row['discount_price'],
                 stock=999,
+                rating=row['ratings'],
                 category=row['main_category'],
                 no_of_ratings=row['no_of_ratings'],
             ))
@@ -314,6 +318,7 @@ class Command(BaseCommand):
                 price=row['actual_price'],
                 discount_price=row['discount_price'],
                 stock=999,
+                rating=row['ratings'],
                 category=row['main_category'],
                 no_of_ratings=row['no_of_ratings'],
             ))
@@ -397,6 +402,7 @@ class Command(BaseCommand):
                 price=row['actual_price'],
                 discount_price=row['discount_price'],
                 stock=999,
+                rating=row['ratings'],
                 category=row['main_category'],
                 no_of_ratings=row['no_of_ratings'],
             ))

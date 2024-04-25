@@ -2,9 +2,13 @@
 {% load static %}
 
 {% block title %}
-    
+    Profile
 {% endblock %}
 
 {% block content %}
-
+<h1>User Profile</h1>
+<div>
+    <p>Email: {{ user.email }}</p>
+    <p>Account active: {{ user.is_active }}</p>
+</div>
 {% endblock %}

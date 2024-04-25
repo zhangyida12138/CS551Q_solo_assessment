@@ -2,9 +2,20 @@
 {% load static %}
 
 {% block title %}
-    
+  Order List  
 {% endblock %}
 
 {% block content %}
+<h1>Your Orders</h1>
+<ul>
+    {% for order in order_list %}
+    <li>
+        Order ID: {{ order.id }}, Total Price: £{{ order.total_price }}
+        <a href="{% url 'Order_details' order.id %}">View Details</a>
+    </li>
+    {% empty %}
+    <li>No orders found.</li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ Search Results   
+{% endblock %}
+
+{% block content %}
+<h1 class'navbar-brand'>Search results :</h1>
+<div class='row'>
+{% for item in results %}
+    <div class='col-md-3 mb-3'>
+        <div class='card h-100'>
+            <img src='{{ item.product_url }}' onerror="this.onerror=null; this.src='{% static 'resource/no_image.png' %}';" class='card-img-top'>
+            <div class='card-body'>
+                <h5 class='card-title'>{{ item.product_name }}</h5>
+                <p class='card-text'>Price: ￡{{ item.price }}</p>
+                <a href="{% url 'Products_detail' item.id %}" class='btn btn-primary'>View Product</a>
+                <p class='card_text'>⭐:{{item.rating}}  <font size=1 color=#536878>{{item.no_of_ratings}} have rated.</font></p>
+                <p class='card-text' position=center>{{ item.stock }} in stock.</p>
+            </div>
+        </div>
+    </div>
+  {% empty %}
+    <p>No results found.</p>
+  {% endfor %}
+  </div>
+{% endblock %}

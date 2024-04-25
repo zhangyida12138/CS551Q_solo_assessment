@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.conf import settings
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -56,7 +57,9 @@ class Products(models.Model):
             models.Index(fields=['category','price'])
         ]#index here
 
+
 class Orders(models.Model):
+    user=models.ForeignKey(Users, on_delete=models.CASCADE, null=True)
     order_date=models.DateTimeField()
     total_price=models.DecimalField(max_digits=10,decimal_places=2)
     order_status=models.CharField(
@@ -75,16 +78,16 @@ class Orders(models.Model):
         ]#index here
 
 class Order_Details(models.Model):
-    order_id=models.ForeignKey(Orders, on_delete=models.CASCADE)
-    product_id=models.ForeignKey(Products, on_delete=models.CASCADE)
+    order=models.ForeignKey(Orders, on_delete=models.CASCADE)
+    product=models.ForeignKey(Products, on_delete=models.CASCADE)
     quantity=models.PositiveIntegerField()
     price=models.DecimalField(max_digits=10, decimal_places=2)
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)
 
 class Shopping_Cart(models.Model):
-    user_id=models.ForeignKey(Users, on_delete=models.CASCADE)
-    product_id=models.ForeignKey(Products, on_delete=models.CASCADE)
+    user=models.ForeignKey(Users, on_delete=models.CASCADE)
+    product=models.ForeignKey(Products, on_delete=models.CASCADE)
     quantity=models.PositiveIntegerField()
     create_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)

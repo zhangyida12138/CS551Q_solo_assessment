@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+<h1 class='navbar-brand:'>you may also like :</h1>
 <div class='row'>
     {% for Product in Products %}
     <div class='col-md-3 mb-3'>
@@ -14,7 +15,7 @@
             <div class='card-body'>
                 <h5 class='card-title'>{{ Product.product_name }}</h5>
                 <p class='card-text'>Price: ￡{{ Product.price }}</p>
-                <a href='{{ Product.product_url }}' class='btn btn-primary'>View Product</a>
+                <a href="{% url 'Products_detail' Product.id %}" class='btn btn-primary'>View Product</a>
                 <p class='card_text'>⭐:{{Product.rating}}  <font size=1 color=#536878>{{Product.no_of_ratings}} have rated.</font></p>
                 <p class='card-text' position=center>{{ Product.stock }} in stock.</p>
             </div>

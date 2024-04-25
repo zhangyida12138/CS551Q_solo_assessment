@@ -128,3 +128,5 @@ AUTH_USER_MODEL = 'shoppingwebsites.Users'
 
 LOGIN_REDIRECT_URL = 'Home'  
 LOGOUT_REDIRECT_URL = 'Home'
+
+LOGIN_URL = 'Login'
