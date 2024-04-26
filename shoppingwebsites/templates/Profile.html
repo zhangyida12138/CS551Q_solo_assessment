@@ -6,9 +6,13 @@
 {% endblock %}
 
 {% block content %}
+
 <h1>User Profile</h1>
 <div>
     <p>Email: {{ user.email }}</p>
     <p>Account active: {{ user.is_active }}</p>
+    <p>If you need to change your password, please contact the administrator!</p>
+    <p>email: admin@admin.com</p>
+    <p>phone: 1234567890</p>
 </div>
 {% endblock %}

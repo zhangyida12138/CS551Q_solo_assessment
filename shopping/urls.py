@@ -16,9 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from shoppingwebsites import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('shoppingwebsites.urls'))
-]
+    path('admin/',views.admin,name='admin'),
+    path('admin/admin_delete_products/<int:product_id>/',views.admin_delete_products,name='admin_delete_products'),
+    path('admin/admin_Order_details/<int:order_id>/',views.admin_Order_details,name='admin_Order_details'),
+    path('admin/order_delete/<int:order_id>/',views.order_delete,name='order_delete'),
+    path('admin/admin_chart',views.admin_chart,name='admin_chart'),
+    path('admin/database',views.admin_database,name='admin_database'),
+    path('admin/customer_list',views.customer_list,name='customer_list'),
+    path('admin/customer_delete/<int:customer_id>/',views.customer_delete,name='customer_delete'),
+    path('admin/customer_edit/<int:customer_id>/',views.customer_edit,name='customer_edit'),
+    path('', include('shoppingwebsites.urls')),
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

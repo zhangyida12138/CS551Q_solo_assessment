@@ -1,0 +1,25 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block content %}
+    <h1>Order Details</h1>
+    {% if order.user.email %}
+        <h2>{{ order.user.email }}</h2>
+    {% else %}
+        <h2>guest</h2>
+    {% endif %}
+
+    <p>Total Price: £{{ order.total_price }}</p>
+    <ul>
+        {% for detail in order_details %}
+        <li><strong>Product:</strong> {{ detail.product.product_name }}</li>
+        <strong>Quantity: </strong>{{ detail.quantity }}
+        <strong>Price per item:</strong> £{{ detail.product.discount_price }}
+        <strong> status:</strong> {{order.order_status}}
+        {% endfor %}
+    </ul>
+{% endblock %}

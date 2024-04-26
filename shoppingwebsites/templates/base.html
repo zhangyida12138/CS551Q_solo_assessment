@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Your Shopping Site{% endblock %}</title>
+    <title>{% block title %}Royal Shopping Site{% endblock %}</title>
     <!-- Bootstrap CSS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -15,8 +15,8 @@
 <body>
     <header>
         <!-- Navigation bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="{% url 'Home1' %} ">ShoppingSite</a >
+        <nav class="navbar navbar-expand-lg ">
+            <a class="navbar-brand" href="{% url 'Home1' %} ">Royal Shopping</a >
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,12 +29,12 @@
                         <a class="nav-link" href="{% url 'products' %}">Products</a >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'orders' %}">Orders</a >
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'Cart' %}">Cart</a >
                     </li>
                     {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'orders' %}">Orders</a >
+                        </li>                    
                         <li class="nav-item"><a class="nav-link" href="{% url 'Profile' %}">Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'Logout' %}">Logout</a></li>
                     {% else %}
@@ -46,9 +46,9 @@
             </div>
                 <form class="d-flex" action="{% url 'search' %}" method="get">
                 <input class="form-control me-2" type="search" name="query" placeholder="Search here ..." aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">search</button>
-</form>
-  </div>
+                <button class="btn btn-outline-primary" type="submit">search</button>
+                </form>
+            </div>
         </nav>
     </header>
 
@@ -60,7 +60,7 @@
 
     <footer class="footer bg-light py-3 text-center">
         <div class="container">
-            <span class="text-muted">Shopping Website</span>
+            <span class="text-muted">Royal Shopping</span>
         </div>
     </footer>
 

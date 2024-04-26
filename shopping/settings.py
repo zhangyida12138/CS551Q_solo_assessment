@@ -127,6 +127,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 AUTH_USER_MODEL = 'shoppingwebsites.Users'
 
 LOGIN_REDIRECT_URL = 'Home'  
-LOGOUT_REDIRECT_URL = 'Home'
+LOGOUT_REDIRECT_URL = 'Login'
 
 LOGIN_URL = 'Login'

@@ -18,7 +18,8 @@ urlpatterns = [
     path('Products/', views.products, name='products'),
     path('Products_detail/<int:product_id>/', views.Products_detail, name='Products_detail'),
     path('Profile/', views.Profile, name='Profile'),
-    path('Login/', auth_views.LoginView.as_view(template_name='registration/Login.html'), name='Login'),
-    path('Logout/', auth_views.LogoutView.as_view(), name='Logout'),
+    path('Login/', views.Login, name='Login'),
+    path('Logout/', views.Logout, name='Logout'),
     path('Register/', views.Register, name='Register'),
+    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

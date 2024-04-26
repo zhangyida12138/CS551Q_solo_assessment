@@ -9,3 +9,6 @@ password:zw123456789
 #test user2:
 email:test2@test.com
 password:test123456789
+#staff:
+email:staff@example.com
+password:zw123456789

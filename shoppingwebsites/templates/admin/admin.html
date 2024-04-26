@@ -1,0 +1,57 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block content %}
+<h1>All Orders</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>User</th>
+            <th>Total Price</th>
+            <th>Order Date</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th>Detail</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            {% if order.user.email %}
+            <td>{{ order.user.email }}</td>
+            {% else %}
+            <td>guest</td>
+            {% endif %}
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.order_date }}</td>
+            <td>{{ order.order_status }}</td>
+            <td>
+                <form action="{% url 'order_delete' order.id %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" name="action" value="Delete" onclick="return confirm('Are you sure?');">
+            </form>
+            </td>
+            <td>
+                <a href="{% url 'admin_Order_details' order.id %}">View Details</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+{% endif %}
+</table>
+{% endblock %}

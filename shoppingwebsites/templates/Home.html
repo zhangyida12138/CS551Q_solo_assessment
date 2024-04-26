@@ -14,7 +14,7 @@
             <img src='{{ Product.product_url }}' onerror="this.onerror=null; this.src='{% static 'resource/no_image.png' %}';" class='card-img-top'>
             <div class='card-body'>
                 <h5 class='card-title'>{{ Product.product_name }}</h5>
-                <p class='card-text'>Price: ￡{{ Product.price }}</p>
+                <p class='card-text'>Price: <strike> £{{ Product.price }}</strike> £{{ Product.discount_price }}</p>
                 <a href="{% url 'Products_detail' Product.id %}" class='btn btn-primary'>View Product</a>
                 <p class='card_text'>⭐:{{Product.rating}}  <font size=1 color=#536878>{{Product.no_of_ratings}} have rated.</font></p>
                 <p class='card-text' position=center>{{ Product.stock }} in stock.</p>
@@ -23,4 +23,15 @@
     </div>
     {% endfor %}
 </div>
+{% if messages %}
+<script type="text/javascript">
+$(document).ready(function() {
+    {% for message in messages %}
+    if ("{{ message.tags }}" == "success") {
+        alert("{{ message }}");
+    }
+    {% endfor %}
+});
+</script>
+{% endif %}
 {% endblock %}

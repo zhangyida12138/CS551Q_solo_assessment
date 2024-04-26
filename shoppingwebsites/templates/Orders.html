@@ -10,7 +10,7 @@
 <ul>
     {% for order in order_list %}
     <li>
-        Order ID: {{ order.id }}, Total Price: £{{ order.total_price }}
+        Order ID: {{ order.id }}, Total Price: £{{ order.total_price }},Date:{{order.create_at}}
         <a href="{% url 'Order_details' order.id %}">View Details</a>
     </li>
     {% empty %}

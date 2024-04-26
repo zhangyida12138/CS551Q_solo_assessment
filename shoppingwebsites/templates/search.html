@@ -14,7 +14,7 @@
             <img src='{{ item.product_url }}' onerror="this.onerror=null; this.src='{% static 'resource/no_image.png' %}';" class='card-img-top'>
             <div class='card-body'>
                 <h5 class='card-title'>{{ item.product_name }}</h5>
-                <p class='card-text'>Price: ￡{{ item.price }}</p>
+                <p class='card-text'>Price:<strike> £{{ item.price }}</strike> £{{ item.discount_price }}</p>
                 <a href="{% url 'Products_detail' item.id %}" class='btn btn-primary'>View Product</a>
                 <p class='card_text'>⭐:{{item.rating}}  <font size=1 color=#536878>{{item.no_of_ratings}} have rated.</font></p>
                 <p class='card-text' position=center>{{ item.stock }} in stock.</p>

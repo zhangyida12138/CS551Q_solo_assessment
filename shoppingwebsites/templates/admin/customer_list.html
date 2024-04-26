@@ -1,0 +1,56 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block content %}
+<h1>Customer List</h1>
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Reset Password</th>
+        <th>Role</th>
+        <th>Delete Account</th>
+    </tr>
+    {% for customer in customer_list %}
+    <tr>
+        <td>{{ customer.email }}</td>
+        <td>
+            <form action="{% url 'customer_edit' customer.id %}" method="post">
+                {% csrf_token %}
+                <label for="password">New Password:</label>
+                <input type="password" id="password" name="password" required>
+                <input type="submit" value="Update">
+            </form>
+            
+        </td>
+        
+            {% if customer.is_superuser%}
+            <td> Superuser </td>
+            {% elif customer.is_staff%}
+            <td> Staff </td>
+            {%  else %}
+            <td>Customer</td>
+            {% endif %}
+        <td>
+            <form action="{% url 'customer_delete' customer.id %}" method="post">
+                {% csrf_token %}
+                <input type="submit" name="action" value="Delete" onclick="return confirm('Are you sure?');">
+            </form>
+        </td>      
+    </tr>
+    {% endfor %}
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+{% endif %}
+</table>
+{% endblock %}

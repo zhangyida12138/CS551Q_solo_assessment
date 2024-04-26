@@ -1,0 +1,165 @@
+/* base.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin-top: 20px;
+}
+
+.title{
+  font-weight: bold;
+  color: #0275d8;
+  padding: 10px;
+  font-size: 1.2em;
+
+}
+
+.navbar-brand {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  color: #0275d8;
+}
+
+.navbar {
+  margin-bottom: 25px;
+}
+
+.nav-item {
+  font-weight: bold;
+  margin-right: 10px;
+  font-family: 'Arial', sans-serif;
+  color: #0275d8;
+}
+
+.nav-link {
+  color: #555;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: #e7e7e7;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+  padding: 10px 0;
+  background-color: #fff;
+  margin-top: 30px;
+  border-top: 1px solid #e7e7e7;
+}
+
+/* Card Styles */
+.card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  height: 100%; /* Make cards equal height */
+  width: 100%;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-img-top {
+  width: 100%;
+  object-fit: cover; /* This will ensure images cover the area fully without stretching */
+  height: 200px; /* Set a fixed height to make images look uniform */
+}
+
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* This will push the footer to the bottom */
+  
+}
+
+.card-title {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.card-text {
+  font-size: 0.9em;
+  color: #555;
+}
+
+.btn-primary {
+  background-color: #0275d8;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #025aa5;
+  border: none;
+}
+
+/* Ensure that all cards have the same width */
+.col-md-3 {
+  display: flex;
+  flex: 0 0 auto;
+  padding: 1rem;
+  width: 25%; 
+  max-width: 25%; /* Prevent card width from exceeding the width of a three-column layout */
+}
+
+/* Fix the height of the row to the tallest card */
+.row-equal-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  /* Adjust the width of the card container for a two-column layout on small screens */
+  .col-md-3 {
+    width: 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 576px) {
+  /* Adjust the width of the card container for a single-column layout on smaller screens */
+  .col-md-3 {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Fix the height of the row to the tallest card */
+.row-equal-height {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-8, .col-md-4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Enhance the appearance of the book details area */
+.col-md-4 {
+    padding: 20px;
+}
+
+.img-fluid {
+    max-width: 100%; /* Limit the maximum width to 50% of its parent container */
+    height: 100; /* Keep the image's aspect ratio */
+    display: block; /* Display block to apply margin properties */
+    margin: 0 auto; /* Center the image horizontally */
+    display: block;
+}
+
+.badge {
+    font-size: 0.8em; /* Adjust the font size of badges */
+    margin-top: 10px; /* Add some space above the badges */
+}

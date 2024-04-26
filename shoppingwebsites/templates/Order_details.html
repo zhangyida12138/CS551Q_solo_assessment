@@ -11,7 +11,7 @@ Order_details
 <p>Total Price: £{{ order.total_price }}</p>
 <ul>
     {% for detail in order_details %}
-    <li>Product: {{ detail.product.product_name }}, Quantity: {{ detail.quantity }}, Price per item: £{{ detail.price }}</li>
+    <li>Product: {{ detail.product.product_name }}, Quantity: {{ detail.quantity }}, Price per item: £{{ detail.product.discount_price }}, status:{{order.order_status}}</li>
     {% endfor %}
 </ul>
 {% endblock %}

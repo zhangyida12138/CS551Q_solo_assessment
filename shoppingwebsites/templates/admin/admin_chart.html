@@ -1,0 +1,122 @@
+{% extends 'admin/admin_base.html' %}
+{% load static %}
+
+{% block title %}
+    
+{% endblock %}
+
+{% block content %}
+<div class="chart-container">
+    <h2>Purchase Types Chart</h2>
+    <canvas id="purchaseTypeChart"></canvas>
+    <h2>Category Sales Chart</h2>
+    <canvas id="categorySalesChart"></canvas>
+    <h2>Product Sales Chart</h2>
+    <canvas id="salesChart"></canvas>
+</div>
+
+<!-- Load Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Script to render the charts -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var ctx1 = document.getElementById('purchaseTypeChart').getContext('2d');
+    var purchaseTypeChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: {{ purchase_types|safe }},
+            datasets: [{
+                label: 'Purchase Types',
+                data: {{ purchase_totals|safe }},
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',  
+                'rgba(54, 162, 235, 0.5)'   
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var ctx2 = document.getElementById('categorySalesChart').getContext('2d');
+    var categorySalesChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: {{ categories|safe }},
+            datasets: [{
+                label: 'Category Sales',
+                data: {{ category_totals|safe }},
+                backgroundColor: [
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(54, 120, 235, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(255, 99, 132, 0.5)', 
+                    'rgba(200, 120, 150, 0.5)', 
+                    'rgba(54, 162, 100, 0.5)'  
+                ],
+                borderColor: [
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(54, 120, 235, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)', 
+                    'rgba(200, 120, 150, 1)', 
+                    'rgba(54, 162, 100, 1)'  
+                ],
+                borderWidth: 1
+            }]
+        }
+    });
+    var ctx3 = document.getElementById('salesChart').getContext('2d');
+    var lineChartData = {{ line_chart_data|safe }};
+    var salesChart = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: [], // to be filled dynamically
+            datasets: [] // to be filled dynamically
+        },
+        options: {
+            // ... options ...
+        }
+    });
+
+    Object.keys(lineChartData).forEach(function(productName) {
+        // Use the dates from the first product as labels
+        if (salesChart.data.labels.length === 0) {
+            salesChart.data.labels = lineChartData[productName].dates;
+        }
+
+        // Create a dataset for each product
+        salesChart.data.datasets.push({
+            label: productName,
+            data: lineChartData[productName].sales,
+            fill: false,
+            borderColor: getRandomColor(),
+            tension: 0.1
+        });
+    });
+
+    salesChart.update();
+});
+
+// generate random color
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+</script>
+{% endblock %}

@@ -19,7 +19,8 @@
                 <input type="text" name="quantity" value="{{ item.quantity }}" class="quantity-input" readonly/>
                 <button type="submit" name="action" value="increase">+</button>
             </p>
-            <p>Price(for one):￡{{ item.product.price }}</p>
+            <p>Price(for one):￡{{ item.product.discount_price }}</p>
+            <p>Added time:{{ item.update_at }}</p>
             <button type="submit" formaction="{% url 'remove_from_cart' item.product.id %}" formmethod="post">Remove</button>
         </div>
     </div>
@@ -31,5 +32,7 @@
 <div class="checkout">
     <p>￡{{ total_price }} in total.</p>
     <a href="{% url 'Purchase' %}" class="btn btn-primary">Proceed to Checkout</a>
+        <a href="{% url 'Home' %}" class="btn btn-primary">Continue Shopping</a>
 </div>
+
 {% endblock %}
