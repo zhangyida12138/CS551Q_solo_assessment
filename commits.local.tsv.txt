@@ -1,0 +1,13 @@
+b550f4f	WEI ZHANG	Fri Apr 26 20:54:58 2024	reademe file
+367d42a	WEI ZHANG	Fri Apr 26 19:42:55 2024	add behave test
+4b0dc30	WEI ZHANG	Thu Apr 25 20:50:12 2024	add chart.js
+532ee44	WEI ZHANG	Thu Apr 25 20:33:15 2024	finish the basic function
+a2cc0e8	WEI ZHANG	Wed Apr 24 22:23:23 2024	login logout function
+5f67e68	WEI ZHANG	Tue Apr 23 21:41:01 2024	finish home page
+fb7e59b	WEI ZHANG	Tue Apr 23 20:56:36 2024	import data
+b9cc5df	WEI ZHANG	Fri Apr 12 09:23:48 2024	insert data
+24f5f70	WEI ZHANG	Fri Apr 12 01:51:23 2024	created some pages
+0e012f1	WEI ZHANG	Thu Apr 11 07:50:35 2024	create some pages and finish mange.py
+1e632d7	WEI ZHANG	Tue Apr 9 08:22:55 2024	create floders
+fcacc1d	WEI ZHANG	Thu Mar 21 09:35:24 2024	set venv
+8ec4a53	zhangyida12138	Thu Mar 21 09:25:59 2024	Initial commit
