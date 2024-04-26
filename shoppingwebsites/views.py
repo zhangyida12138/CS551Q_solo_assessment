@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect,Http404
 from django.urls import reverse
-from django.db.models import Prefetch,Count, Case, When, Value, CharField,Sum, F
+from django.db.models import Prefetch,Count, Case, When, Value, CharField,Sum, F ,Q
 from urllib.parse import quote
 from django.core.exceptions import FieldError
 from shoppingwebsites.models import Users,Products,Orders,Order_Details,Shopping_Cart
@@ -30,15 +30,26 @@ def Home(request):
 # Search functionality: Filters products based on the 'query' parameter from GET request.
 def search(request):
     try:
-        query = request.GET.get('query','')
+        query = request.GET.get('query', '')
+        min_price = request.GET.get('min_price', None)
+        max_price = request.GET.get('max_price', None)
+        min_rating = request.GET.get('min_rating', None)
+
+        filters = Q()
         if query:
-            results = Products.objects.filter(product_name__icontains=query)
-        else:
-            results = Products.objects.none()
-        
-        return render(request,'search.html',{'results':results})
+            filters &= Q(product_name__icontains=query)
+        if min_price:
+            filters &= Q(discount_price__gte=min_price)
+        if max_price:
+            filters &= Q(discount_price__lte=max_price)
+        if min_rating:
+            filters &= Q(rating__gte=min_rating)
+
+        results = Products.objects.filter(filters)
+
+        return render(request, 'search.html', {'results': results, 'request': request})
     except Exception as e:
-        return render(request,'error.html',{'error':str(e)})
+        return render(request, 'error.html', {'error': str(e)})
 
 
 # Product details view: Displays details for a specific product identified by 'product_id'.
@@ -124,12 +135,14 @@ def remove_from_cart(request, product_id):
             Shopping_Cart.objects.filter(user=request.user, product_id=product_id).delete()
         else:
             cart = request.session.get('cart', {})
-            if product_id in cart:
-                del cart[product_id]
+            product_id_str = str(product_id) # Convert to string to ensure consistency
+            if product_id_str in cart:
+                del cart[product_id_str]
                 request.session['cart'] = cart
+                request.session.modified = True # Ensure session modifications are saved
         return redirect('Cart')
     except Exception as e:
-        return render(request,'error.html',{'error':str(e)})
+        return render(request, 'error.html', {'error': str(e)})
 
 # Adds a product to the cart, handling both logged-in and guest users.
 def add_to_cart(request, product_id):
